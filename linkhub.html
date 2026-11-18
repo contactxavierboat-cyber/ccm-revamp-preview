@@ -51,7 +51,7 @@ main{position:relative;z-index:1;max-width:440px;margin:0 auto;padding:34px 20px
   <p class="foot"><b>Mon–Thu</b> 11 AM–12 AM · <b>Fri–Sat</b> 11 AM–3 AM · <b>Sun</b> 12 PM–12 AM<br>106 NE 1st St, Miami, FL 33132 · @cigarclub_miami</p>
 </main>
 <script>
-const HERO_LOOP='assets/hero-khaled-graded-loop.mp4',HERO_POSTER='assets/hero-khaled-graded-poster.jpg';
+const HERO_LOOP='assets/hero-khaled-graded-bg.mp4',HERO_POSTER='assets/hero-khaled-graded-poster.jpg';
 ['bg','fg'].forEach(i=>{const v=document.getElementById(i);v.poster=HERO_POSTER;v.src=HERO_LOOP;v.play().catch(()=>{})});
 (function(){const n=new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'})),d=n.getDay(),m=n.getHours()*60+n.getMinutes();
 const H={0:[720,1440],1:[660,1440],2:[660,1440],3:[660,1440],4:[660,1440],5:[660,1620],6:[660,1620]},p=H[(d+6)%7];let t;

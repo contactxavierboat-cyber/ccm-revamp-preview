@@ -1139,7 +1139,7 @@ if(qs.has('nodock')) document.body.classList.add('nodock');
 function enter(){localStorage.setItem('ccm21','1');document.body.classList.add('nogate')}
 
 // HERO VIDEO: swap these three constants to change the clip (e.g. the graded version)
-const HERO_LOOP='assets/hero-khaled-graded-loop.mp4';     // ungraded fallback: 'assets/hero-khaled-loop.mp4'
+const HERO_LOOP='assets/hero-khaled-graded-bg.mp4';     // ungraded fallback: 'assets/hero-khaled-bg.mp4'
 const HERO_POSTER='assets/hero-khaled-graded-poster.jpg'; // ungraded fallback: 'assets/hero-khaled-poster.jpg'
 const HERO_FULL='assets/hero-khaled-graded-full.mp4';     // full graded reel with sound, click-to-play
 (()=>{const v=document.getElementById('bgVideo');v.poster=HERO_POSTER;v.src=HERO_LOOP;v.muted=true;v.play().catch(()=>{})})();
