@@ -177,6 +177,8 @@ footer a:hover{color:var(--cream)}
 footer p{line-height:1.6}
 
 /* sticky mobile CTA */
+.sec-cta{display:flex;justify-content:center;margin-top:28px}
+.addon .sec-cta{margin-top:14px}
 .mbar{display:none}
 
 @media (max-width:1080px){
@@ -196,14 +198,24 @@ footer p{line-height:1.6}
   header .bar{height:62px}
   header .logo img{height:28px}
   header .btn{height:38px;padding:0 14px;font-size:13px}
-  .hero{align-items:flex-end;min-height:0}
+  .hero{align-items:flex-end;min-height:0;background:var(--ink)}
   .hero .amb{display:none}
-  .bgv{inset:0 0 auto 0;width:100%;height:34vh;min-height:230px;filter:none;object-position:50% 32%;
-    -webkit-mask-image:none;mask-image:none}
-  .hero .shade{background:linear-gradient(0deg,rgba(13,19,14,1) 0%,rgba(13,19,14,.98) 56%,rgba(13,19,14,.55) 66%,rgba(13,19,14,.08) 80%,rgba(13,19,14,.45) 100%)}
-  .hgrid{padding:calc(34vh - 18px) 0 22px}
+  .hero .media{inset:0 0 auto 0;height:78vh;min-height:460px}
+  .hero .media:after{content:"";position:absolute;left:0;right:0;bottom:0;height:40%;z-index:1;pointer-events:none;
+    background:linear-gradient(to bottom,rgba(13,19,14,0) 0%,rgba(13,19,14,.55) 45%,rgba(13,19,14,1) 100%)}
+  .bgv{inset:0;width:100%;height:100%;filter:none;object-position:50% 32%;
+    -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 60%,transparent 100%);
+    mask-image:linear-gradient(to bottom,#000 0%,#000 60%,transparent 100%)}
+  .hero .shade{background:linear-gradient(to bottom,
+    rgba(13,19,14,.42) 0%,
+    rgba(13,19,14,.08) 14%,
+    rgba(13,19,14,.16) 42vh,
+    rgba(13,19,14,.5) 54vh,
+    rgba(13,19,14,1) 78vh,
+    rgba(13,19,14,1) 100%)}
+  .hgrid{padding:42vh 0 28px}
   .sound.d{display:none}
-  .sound.m{display:inline-flex;right:14px;left:auto;bottom:auto;top:calc(34vh - 64px);margin:0;height:34px;font-size:12px;z-index:4}
+  .sound.m{display:inline-flex;right:14px;left:auto;bottom:auto;top:calc(42vh - 52px);margin:0;height:34px;font-size:12px;z-index:4}
   .hero h1{font-size:34px;margin-bottom:8px}
   .hero .lead{font-size:15px;margin-bottom:12px}
   .leadcard{padding:12px}
@@ -311,6 +323,7 @@ footer p{line-height:1.6}
       <div class="tile"><div class="ic">○</div><h3>Full bar</h3></div>
       <div class="tile"><div class="ic">✦</div><h3>A hosted night</h3></div>
     </div>
+    <div class="sec-cta"><a class="btn btn-gold" href="#lead">Check availability</a></div>
   </div>
 </section>
 
@@ -318,8 +331,8 @@ footer p{line-height:1.6}
   <div class="wrap">
     <div class="head">
       <div>
-        <div class="eyebrow">Event packages</div>
-        <h2>What they <em>offer.</em></h2>
+        <div class="eyebrow">What they offer</div>
+        <h2>Pick a night. <em>We'll host it.</em></h2>
       </div>
     </div>
     <div class="packages">
@@ -328,10 +341,6 @@ footer p{line-height:1.6}
         <h3>A section</h3>
         <div class="cap2">Up to ~20 guests · birthdays, client dinners</div>
         <div class="price">$___ <span class="ph">Elad to set</span></div>
-        <ul>
-          <li>What's included <span class="ph">Elad to set</span></li>
-          <li>Reserved seating area</li>
-        </ul>
         <a class="btn btn-ghost" href="#lead" onclick="pickPkg('A section')">Book this</a>
       </div>
       <div class="pkg feat">
@@ -339,10 +348,6 @@ footer p{line-height:1.6}
         <h3>Full lounge buyout</h3>
         <div class="cap2">Up to 50 guests · corporate, bachelor parties</div>
         <div class="price">$___ <span class="ph">Elad to set</span></div>
-        <ul>
-          <li>What's included <span class="ph">Elad to set</span></li>
-          <li>The whole room, for your group</li>
-        </ul>
         <a class="btn btn-gold" href="#lead" onclick="pickPkg('Full lounge buyout')">Book this</a>
       </div>
       <div class="pkg">
@@ -350,14 +355,11 @@ footer p{line-height:1.6}
         <h3>Brand night</h3>
         <div class="cap2">Activations, launches, VIP parties</div>
         <div class="price">$___ <span class="ph">Elad to set</span></div>
-        <ul>
-          <li>What's included <span class="ph">Elad to set</span></li>
-          <li>Brand touches in the room</li>
-        </ul>
         <a class="btn btn-ghost" href="#lead" onclick="pickPkg('Brand night')">Book this</a>
       </div>
     </div>
-    <p class="addon"><b>Make it a cigar night.</b> Add a pairing, a humidor selection, or bottles for the table — from $___ <span class="ph">Elad to set</span></p>
+    <p class="addon"><b>Make it a cigar night.</b> Pairings, a humidor selection, or bottles — from $___ <span class="ph">Elad to set</span></p>
+    <div class="sec-cta"><a class="btn btn-gold" href="#lead">Check availability</a></div>
   </div>
 </section>
 
@@ -365,7 +367,7 @@ footer p{line-height:1.6}
   <div class="wrap">
     <div class="head" style="margin-bottom:32px">
       <div class="eyebrow">Proof</div>
-      <h2>The room Miami <em>already knows.</em></h2>
+      <h2>The legend himself. <em>DJ Khaled, here.</em></h2>
     </div>
     <div class="pgrid">
       <div class="moment">
@@ -397,6 +399,7 @@ footer p{line-height:1.6}
         </div>
       </div>
     </div>
+    <div class="sec-cta"><a class="btn btn-gold" href="#lead">Check availability</a></div>
   </div>
 </section>
 
@@ -405,7 +408,7 @@ footer p{line-height:1.6}
     <div class="box">
       <div class="head">
         <div class="eyebrow">Request your date</div>
-        <h2>Tell us the night. <em>We'll take it from there.</em></h2>
+        <h2>Tell us the night.</h2>
       </div>
       <div class="leadcard" id="leadFinal">
         <div class="step1">
@@ -470,6 +473,7 @@ footer p{line-height:1.6}
     <div>
       <h5>Contact</h5>
       <p>Phone <span class="ph">Elad to confirm</span><br>
+      <a href="#lead">Book your event</a><br>
       <a href="https://www.instagram.com/cigarclub_miami/" target="_blank" rel="noopener">Instagram @cigarclub_miami ↗</a></p>
     </div>
   </div>
