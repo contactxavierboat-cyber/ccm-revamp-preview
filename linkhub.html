@@ -11,7 +11,7 @@
   --green:#1d2a1f;--deep:#121a14;--ink:#0d130e;
   --cream:#edddc3;--cream-2:#cfc1a8;--muted:#a89d89;
   --gold:#c69a51;--gold-2:#ac8039;--gold-hi:#e2c07f;
-  --line:rgba(226,192,127,.3);
+  --line:rgba(226,192,127,.38);
   --sans:'Red Hat Display',system-ui,sans-serif;
   --serif:'Libre Baskerville',Georgia,serif;
 }
@@ -19,142 +19,155 @@
 html,body{height:100%}
 body{font-family:var(--sans);background:var(--ink);color:var(--cream);min-height:100vh;min-height:100svh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
-/* full-bleed video, fixed behind everything */
+/* blurred, darkened atmosphere behind the card */
 .bg{position:fixed;inset:0;z-index:0;background:var(--ink);overflow:hidden}
-.bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%;filter:saturate(1.06) contrast(1.08) brightness(.96)}
+.bg video{position:absolute;inset:-8%;width:116%;height:116%;object-fit:cover;object-position:50% 18%;filter:blur(22px) saturate(1.05) brightness(.55) contrast(1.08);transform:scale(1.04)}
 .shade{position:absolute;inset:0;pointer-events:none;background:
-  radial-gradient(90% 70% at 50% 28%,rgba(198,154,81,.10),transparent 58%),
-  linear-gradient(180deg,
-    rgba(13,19,14,.88) 0%,
-    rgba(13,19,14,.62) 12%,
-    rgba(13,19,14,.18) 28%,
-    rgba(13,19,14,.12) 40%,
-    rgba(13,19,14,.42) 58%,
-    rgba(13,19,14,.82) 78%,
-    rgba(13,19,14,.94) 100%)}
-.grain{position:absolute;inset:0;pointer-events:none;opacity:.10;
+  radial-gradient(80% 60% at 50% 30%,rgba(198,154,81,.08),transparent 62%),
+  linear-gradient(180deg,rgba(13,19,14,.45) 0%,rgba(13,19,14,.28) 40%,rgba(13,19,14,.55) 100%)}
+.grain{position:absolute;inset:0;pointer-events:none;opacity:.08;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-main{position:relative;z-index:1;width:min(430px,100% - 40px);margin:0 auto;min-height:100vh;min-height:100svh;padding:28px 0 calc(28px + env(safe-area-inset-bottom));display:flex;flex-direction:column;align-items:center;text-align:center}
+main{position:relative;z-index:1;min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:28px 20px calc(28px + env(safe-area-inset-bottom))}
 
-.brand{width:100%;flex:none}
-.logo{width:200px;margin:0 auto 10px;display:block;filter:drop-shadow(0 8px 24px rgba(0,0,0,.45))}
-.sub{font-size:15px;color:var(--cream-2);line-height:1.45;text-shadow:0 2px 16px rgba(0,0,0,.55)}
+/* original lounge card — gold hairline, deep green body, not a generic link page */
+.card{width:min(400px,100%);background:var(--deep);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 28px 70px -18px rgba(0,0,0,.72),0 0 0 1px rgba(0,0,0,.35),inset 0 1px 0 rgba(226,192,127,.14)}
 
-/* lets Khaled's face read in the middle-upper frame */
-.face{flex:1 1 auto;min-height:120px;width:100%}
-
-.stack{width:100%;flex:none;display:flex;flex-direction:column;align-items:center;gap:10px}
-
-.tagrow{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:2px}
-.tag,.sound{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:rgba(13,19,14,.5);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--cream);font:600 11.5px/1 var(--sans);letter-spacing:.01em;text-shadow:0 1px 8px rgba(0,0,0,.4)}
-.tag i{width:18px;height:18px;border-radius:50%;background:var(--gold);color:#17120a;display:grid;place-items:center;font-style:normal;font-size:8px;flex:none}
-.sound{cursor:pointer;padding:0 12px 0 8px}
-.sound span{width:22px;height:22px;border-radius:50%;background:var(--gold);color:#17120a;display:grid;place-items:center;font-size:9px}
+.stage{position:relative;height:300px;background:var(--ink);overflow:hidden}
+.stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%;filter:saturate(1.06) contrast(1.08) brightness(.98)}
+.fade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(13,19,14,0) 0%,rgba(13,19,14,0) 42%,rgba(18,26,20,.55) 68%,var(--deep) 100%)}
+.brand{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:0 22px 16px;text-align:center}
+.logo{width:186px;margin:0 auto 8px;display:block;filter:drop-shadow(0 6px 18px rgba(0,0,0,.55))}
+.rule{width:48px;height:1px;margin:0 auto 10px;background:linear-gradient(90deg,transparent,var(--gold-hi),transparent);opacity:.85}
+.sub{font-family:var(--serif);font-size:12.5px;line-height:1.45;color:var(--cream-2);text-shadow:0 2px 12px #000}
+.tagrow{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:10px}
+.tag,.sound{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;border:1px solid rgba(226,192,127,.32);background:rgba(13,19,14,.72);color:var(--cream);font:600 10.5px/1 var(--sans);letter-spacing:.01em}
+.tag i{width:14px;height:14px;border-radius:50%;background:var(--gold);color:#17120a;display:grid;place-items:center;font-style:normal;font-size:7px;flex:none}
+.sound{cursor:pointer;padding:0 10px 0 6px;background:rgba(13,19,14,.72)}
+.sound span{width:16px;height:16px;border-radius:50%;background:var(--gold);color:#17120a;display:grid;place-items:center;font-size:7px}
 .sound.on{border-color:var(--gold-hi);color:var(--gold-hi)}
 
-.links{width:100%;display:grid;gap:10px}
-.l{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;height:54px;padding:0 18px;border-radius:16px;border:1px solid var(--line);background:rgba(18,26,20,.42);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);color:var(--cream);text-decoration:none;font-weight:600;font-size:16px;box-shadow:0 12px 32px -18px #000, inset 0 1px 0 rgba(237,221,195,.12)}
-.l:hover{border-color:rgba(226,192,127,.5);background:rgba(18,26,20,.55)}
-
-.l.p{height:68px;font-size:18px;letter-spacing:.01em;background:linear-gradient(135deg,var(--gold-hi),var(--gold) 48%,var(--gold-2));color:#17120a;border:0;box-shadow:0 16px 40px -12px rgba(198,154,81,.8), 0 0 0 0 rgba(198,154,81,.45);animation:pulse 2.8s ease-in-out infinite}
-.l.p:hover{transform:translateY(-1px)}
-.l.p:after{content:"";position:absolute;top:0;bottom:0;left:-55%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,244,214,.7),transparent);transform:skewX(-20deg);animation:shimmer 3.6s ease-in-out infinite}
+.actions{padding:6px 18px 20px;display:flex;flex-direction:column;gap:10px}
+.btn{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;height:52px;width:100%;padding:0 18px;border-radius:14px;text-decoration:none;font-weight:650;font-size:15.5px;letter-spacing:.01em;border:0;cursor:pointer}
+.btn.gold{height:58px;font-size:17px;background:linear-gradient(135deg,var(--gold-hi),var(--gold) 48%,var(--gold-2));color:#17120a;box-shadow:0 10px 28px -12px rgba(198,154,81,.85);animation:pulse 2.8s ease-in-out infinite}
+.btn.gold:hover{transform:translateY(-1px)}
+.btn.gold:after{content:"";position:absolute;top:0;bottom:0;left:-55%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,244,214,.65),transparent);transform:skewX(-20deg);animation:shimmer 3.6s ease-in-out infinite}
 @keyframes shimmer{0%,55%{left:-55%}100%{left:130%}}
-@keyframes pulse{0%,100%{box-shadow:0 16px 40px -12px rgba(198,154,81,.8),0 0 0 0 rgba(198,154,81,.0)}50%{box-shadow:0 16px 40px -10px rgba(198,154,81,.95),0 0 0 10px rgba(198,154,81,.0)}}
+@keyframes pulse{0%,100%{box-shadow:0 10px 28px -12px rgba(198,154,81,.8)}50%{box-shadow:0 12px 32px -8px rgba(198,154,81,.95)}}
+.btn.cream{background:var(--cream);color:#17120a}
+.btn.cream:hover{background:#f3e7d1}
+.btn.solid{background:var(--green);color:var(--cream);border:1px solid rgba(226,192,127,.28)}
+.btn.solid:hover{border-color:rgba(226,192,127,.5);background:#243328}
 
-.drop{width:100%;padding:14px;border-radius:16px;border:1px solid var(--line);background:rgba(18,26,20,.42);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);text-align:left;box-shadow:0 12px 32px -18px #000, inset 0 1px 0 rgba(237,221,195,.12)}
-.drop b{display:block;font-size:15px;margin-bottom:10px;text-align:center;font-weight:600}
+.drop{padding:12px;border-radius:14px;background:var(--green);border:1px solid rgba(226,192,127,.28)}
+.drop b{display:block;font-size:13.5px;margin-bottom:8px;text-align:center;font-weight:650;color:var(--cream)}
 .drop .row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
-.drop input{height:44px;width:100%;border:1px solid rgba(237,221,195,.22);border-radius:12px;background:rgba(13,19,14,.45);color:var(--cream);padding:0 12px;font:500 14px var(--sans);outline:none}
+.drop input{height:42px;width:100%;border:1px solid rgba(237,221,195,.2);border-radius:10px;background:var(--ink);color:var(--cream);padding:0 12px;font:500 14px var(--sans);outline:none}
 .drop input::placeholder{color:var(--muted)}
 .drop input:focus{border-color:var(--gold)}
-.drop .btn{width:100%;height:46px;border:0;border-radius:14px;cursor:pointer;font:600 15px var(--sans);background:linear-gradient(135deg,var(--gold-hi),var(--gold) 50%,var(--gold-2));color:#17120a}
-.drop .ok{display:none;text-align:center;font-size:14px;color:var(--cream-2);padding:8px 0 2px}
-.drop.done .row,.drop.done .btn{display:none}
+.drop .go{height:44px;font-size:15px;animation:none;box-shadow:none}
+.drop .ok{display:none;text-align:center;font-size:13.5px;color:var(--cream-2);padding:8px 0 2px}
+.drop.done .row,.drop.done .go{display:none}
 .drop.done .ok{display:block}
 
-.ph{display:inline-flex;border:1px dashed var(--gold);color:var(--gold-hi);border-radius:6px;padding:0 6px;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-left:6px}
-.foot{margin-top:6px;font-size:12px;color:var(--cream-2);text-shadow:0 2px 12px #000}
+.ph{display:inline-flex;border:1px dashed var(--gold);color:var(--gold-hi);border-radius:6px;padding:0 6px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-left:6px}
+.foot{margin-top:2px;text-align:center;font-size:11.5px;color:var(--cream-2);letter-spacing:.02em}
 
 @media (min-width:761px){
+  .stage{height:368px}
+  .logo{width:200px}
+  .card{width:min(420px,100%)}
   .bg video{object-position:50% 16%}
-  main{width:min(430px,100% - 48px);padding:40px 0 40px}
-  .logo{width:220px}
-  .face{min-height:160px}
+  .stage video{object-position:50% 16%}
 }
 @media (max-width:760px){
-  .bg video{object-position:50% 20%}
-  .logo{width:176px}
-  .sub{font-size:14px}
-  .face{min-height:100px}
-  .l{height:50px;font-size:15.5px}
-  .l.p{height:62px;font-size:17px}
-  .tag{font-size:10.5px;padding:0 10px;max-width:100%}
+  main{padding:16px 14px calc(16px + env(safe-area-inset-bottom));align-items:flex-start}
+  .card{border-radius:22px}
+  .stage{height:260px}
+  .logo{width:168px}
+  .sub{font-size:12px}
+  .btn{height:50px;font-size:15px;border-radius:13px}
+  .btn.gold{height:56px;font-size:16.5px}
 }
 @media (max-height:740px) and (max-width:760px){
-  .face{min-height:72px}
-  main{padding:20px 0 16px}
-  .logo{width:160px;margin-bottom:6px}
+  main{padding:12px 12px 12px}
+  .stage{height:210px}
+  .logo{width:150px;margin-bottom:6px}
+  .actions{padding:4px 14px 14px;gap:8px}
 }
 </style>
 </head>
 <body>
-<div class="bg">
+<div class="bg" aria-hidden="true">
   <video id="bg" autoplay muted loop playsinline preload="auto" poster="assets/hero-khaled-graded-poster.jpg"></video>
   <div class="shade"></div>
   <div class="grain"></div>
 </div>
 <main>
-  <div class="brand">
-    <img class="logo" src="assets/img/logo-wordmark.png" alt="Cigar Club Miami">
-    <p class="sub">Downtown Miami cigar lounge &amp; bar. Private events for up to 50.</p>
-  </div>
-  <div class="face" aria-hidden="true"></div>
-  <div class="stack">
-    <div class="tagrow">
-      <span class="tag"><i>▶</i>The legend himself — DJ Khaled at Cigar Club Miami</span>
-      <button class="sound" id="snd" type="button" onclick="toggleSound()"><span>▶</span><em id="sndLbl">Sound on</em></button>
-    </div>
-    <nav class="links">
-      <a class="l p" href="index.html?nogate#lead">Book your event</a>
-      <a class="l" href="index.html?nogate#get">Shop cigars</a>
-    </nav>
-    <form class="drop" id="drop" onsubmit="return alertMe(event)">
-      <b>Get rare-drop alerts</b>
-      <div class="row">
-        <input type="email" name="email" placeholder="Email" required autocomplete="email">
-        <input type="tel" name="phone" placeholder="Phone" required autocomplete="tel">
+  <article class="card">
+    <div class="stage">
+      <video id="fg" autoplay muted loop playsinline preload="auto" poster="assets/hero-khaled-graded-poster.jpg"></video>
+      <div class="fade"></div>
+      <div class="brand">
+        <img class="logo" src="assets/img/logo-wordmark.png" alt="Cigar Club Miami">
+        <div class="rule" aria-hidden="true"></div>
+        <p class="sub">Downtown Miami cigar lounge &amp; bar.<br>Private events for up to 50.</p>
+        <div class="tagrow">
+          <span class="tag"><i>▶</i>The legend himself — DJ Khaled at Cigar Club Miami</span>
+          <button class="sound" id="snd" type="button" onclick="toggleSound()"><span>▶</span><em id="sndLbl">Sound on</em></button>
+        </div>
       </div>
-      <button class="btn" type="submit">Alert me</button>
-      <p class="ok">You're on the list. We'll be in touch.</p>
-    </form>
-    <nav class="links">
-      <a class="l" href="https://maps.google.com/?q=Cigar+Club+Miami+106+NE+1st+St+Miami+FL+33132" target="_blank" rel="noopener">Directions</a>
-      <a class="l" href="tel:">Call <span class="ph">Elad to confirm</span></a>
-    </nav>
-    <p class="foot">106 NE 1st St, Miami · 21+</p>
-  </div>
+    </div>
+    <div class="actions">
+      <a class="btn gold" href="index.html?nogate#lead">Book your event</a>
+      <a class="btn cream" href="index.html?nogate#get">Shop cigars</a>
+      <form class="drop" id="drop" onsubmit="return alertMe(event)">
+        <b>Get rare-drop alerts</b>
+        <div class="row">
+          <input type="email" name="email" placeholder="Email" required autocomplete="email">
+          <input type="tel" name="phone" placeholder="Phone" required autocomplete="tel">
+        </div>
+        <button class="btn gold go" type="submit">Alert me</button>
+        <p class="ok">You're on the list. We'll be in touch.</p>
+      </form>
+      <a class="btn solid" href="https://maps.google.com/?q=Cigar+Club+Miami+106+NE+1st+St+Miami+FL+33132" target="_blank" rel="noopener">Directions</a>
+      <a class="btn solid" href="tel:">Call <span class="ph">Elad to confirm</span></a>
+      <p class="foot">106 NE 1st St, Miami · 21+</p>
+    </div>
+  </article>
 </main>
 <script>
 const HERO_LOOP='assets/hero-khaled-graded-bg.mp4';
 const HERO_POSTER='assets/hero-khaled-graded-poster.jpg';
 const HERO_FULL='assets/hero-khaled-graded-full.mp4';
-const v=document.getElementById('bg');
-v.poster=HERO_POSTER;v.src=HERO_LOOP;v.muted=true;v.play().catch(()=>{});
+const bg=document.getElementById('bg');
+const fg=document.getElementById('fg');
+function arm(v,src,muted){
+  v.poster=HERO_POSTER;v.src=src;v.muted=muted!==false;v.loop=true;v.play().catch(()=>{});
+}
+arm(bg,HERO_LOOP,true);
+arm(fg,HERO_LOOP,true);
+fg.addEventListener('timeupdate',()=>{
+  if(Math.abs((bg.currentTime||0)-(fg.currentTime||0))>0.25){
+    try{bg.currentTime=fg.currentTime}catch(e){}
+  }
+});
 let loud=false;
 function toggleSound(){
   loud=!loud;
   const btn=document.getElementById('snd'),lbl=document.getElementById('sndLbl');
   btn.classList.toggle('on',loud);
   lbl.textContent=loud?'Sound off':'Sound on';
-  const t=v.currentTime||0;
+  const t=fg.currentTime||0;
+  const src=loud?HERO_FULL:HERO_LOOP;
+  arm(bg,src,true);
+  arm(fg,src,!loud);
   if(loud){
-    v.src=HERO_FULL;v.muted=false;v.loop=true;v.play().catch(()=>{v.muted=true;loud=false;btn.classList.remove('on');lbl.textContent='Sound on'});
-  }else{
-    v.src=HERO_LOOP;v.muted=true;v.loop=true;v.play().catch(()=>{});
+    fg.play().catch(()=>{fg.muted=true;loud=false;btn.classList.remove('on');lbl.textContent='Sound on';arm(fg,HERO_LOOP,true);arm(bg,HERO_LOOP,true)});
   }
-  v.addEventListener('loadeddata',()=>{try{v.currentTime=t}catch(e){}},{once:true});
+  const seek=()=>{try{fg.currentTime=t;bg.currentTime=t}catch(e){}};
+  fg.addEventListener('loadeddata',seek,{once:true});
+  bg.addEventListener('loadeddata',seek,{once:true});
 }
 function alertMe(e){e.preventDefault();document.getElementById('drop').classList.add('done');return false}
 </script>
